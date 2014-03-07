@@ -4,7 +4,7 @@
 
 CREATE TABLE races
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL, --ASC,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, --ASC,
   name NVARCHAR(100) NOT NULL,
   description NVARCHAR(1000) NOT NULL,
 
@@ -17,7 +17,7 @@ INSERT INTO races (name, description)
 
 CREATE TABLE rarities
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name NVARCHAR(100) NOT NULL,
   rank SMALLINT NOT NULL, -- e.g., common = 1, uncommon = 2, hero = some high value
   description TEXT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE rarities
 
 CREATE TABLE growths
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name NVARCHAR(100) NOT NULL,
   description TEXT NULL,
 
@@ -39,12 +39,12 @@ CREATE TABLE familiars
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   bb_id INTEGER NULL, -- Blood Brother's ID value
   name TEXT NOT NULL,
-  rarity_id SMALLINT NOT NULL,
+  rarity_id INTEGER NOT NULL,
   num_stars SMALLINT NOT NULL,
   max_stars SMALLINT NOT NULL,
-  growth_id SMALLINT NOT NULL,
+  growth_id INTEGER NOT NULL,
   worth INTEGER NOT NULL,
-  race_id SMALLINT NOT NULL,
+  race_id INTEGER NOT NULL,
   tradable SMALLINT NOT NULL, -- bit
   last_words TEXT NOT NULL,
 
@@ -61,7 +61,7 @@ CREATE TABLE familiars
 
 CREATE TABLE stats
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NULL,
 
@@ -70,7 +70,7 @@ CREATE TABLE stats
 
 CREATE TABLE skill_types
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NULL,
 
@@ -79,7 +79,7 @@ CREATE TABLE skill_types
 
 CREATE TABLE skill_target_types
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NULL,
 
@@ -93,28 +93,28 @@ CREATE TABLE skills
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NOT NULL,
-  type_id SMALLINT NOT NULL,
+  skill_type_id INTEGER NOT NULL,
   probability REAL NOT NULL,
   modifier REAL NULL,
-  modifier_stat_id SMALLINT NULL,
+  modifier_stat_id INTEGER NULL,
   flat_modifier TINYINT NULL, -- bit
 
   num_targets SMALLINT NULL,
-  target_type_id SMALLINT NULL,
+  skill_target_type_id INTEGER NULL,
   rows_range INT NULL, -- bit-mask of which rows (front to back) can be affected
   columns_range INT NULL, -- bit-mask of which columns (left to right) can be affected
 
   skill_based TEXT NULL, -- e.g., "Physical Based Defense".  Needed?
   damage_reduction TEXT NULL, -- e.g., "Physical Wards".  Needed?
-  foe_defensive_modifier_stat_id SMALLINT NULL,
+  foe_defensive_modifier_stat_id INTEGER NULL,
 
   ability TEXT NULL, -- e.g., "Take Damage & Counter".  Needed?
   ignores_position TINYINT NULL, -- bit
 
   UNIQUE (name) ON CONFLICT REPLACE,
-  FOREIGN KEY (type_id) REFERENCES skill_types(id),
+  FOREIGN KEY (skill_type_id) REFERENCES skill_types(id),
   FOREIGN KEY (modifier_stat_id) REFERENCES stats(id),
-  FOREIGN KEY (target_type_id) REFERENCES skill_target_types(id),
+  FOREIGN KEY (skill_target_type_id) REFERENCES skill_target_types(id),
   FOREIGN KEY (foe_defensive_modifier_stat_id REFERENCES stats(id),
 );
 
@@ -123,7 +123,7 @@ CREATE TABLE skill_affected_stats
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   skill_id INTEGER NOT NULL,
-  stat_id SMALLINT NOT NULL,
+  stat_id INTEGER NOT NULL,
   rank TINYINT NULL, -- this might be irrelevant/unknowable
   affects_allies TINYINT NOT NULL, -- bit
   affects_foes TINYINT NOT NULL, -- bit
@@ -146,7 +146,7 @@ CREATE TABLE familiar_skills
 
 CREATE TABLE event_types
 (
-  id SMALLINT PRIMARY KEY AUTOINCREMENT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NULL,
 
@@ -157,7 +157,7 @@ CREATE TABLE events
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
-  event_type_id SMALLINT NOT NULL,
+  event_type_id INTEGER NOT NULL,
   date_started TEXT NULL,
   date_ended TEXT NULL,
 
