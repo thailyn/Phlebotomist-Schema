@@ -142,6 +142,8 @@ CREATE TABLE familiar_skills
   familiar_id INTEGER NOT NULL,
   skill_id INTEGER NOT NULL,
   rank TINYINT NOT NULL, -- probably not needed
+
+  UNIQUE (familiar_id, skill_id) ON CONFLICT REPLACE
 );
 
 CREATE TABLE event_types
