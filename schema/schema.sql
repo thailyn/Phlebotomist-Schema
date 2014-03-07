@@ -115,7 +115,7 @@ CREATE TABLE skills
   FOREIGN KEY (skill_type_id) REFERENCES skill_types(id),
   FOREIGN KEY (modifier_stat_id) REFERENCES stats(id),
   FOREIGN KEY (skill_target_type_id) REFERENCES skill_target_types(id),
-  FOREIGN KEY (foe_defensive_modifier_stat_id REFERENCES stats(id),
+  FOREIGN KEY (foe_defensive_modifier_stat_id) REFERENCES stats(id)
 );
 
 -- If a skill affects a stat, they are related here
@@ -210,7 +210,7 @@ CREATE TABLE player_familiars
   roots_crystals INT NULL,
 
   FOREIGN KEY (player_id) REFERENCES players(id),
-  FOREIGN KEY (familiar_id) REFERENCES familiars(id),
+  FOREIGN KEY (familiar_id) REFERENCES familiars(id)
 );
 
 -- brigade_formations
