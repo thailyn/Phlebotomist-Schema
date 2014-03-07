@@ -1,6 +1,7 @@
 -- -*- mode:sql product:SQLite -*-
 -- (C-u C-c TAB)
 
+BEGIN TRANSACTION;
 
 CREATE TABLE races
 (
@@ -214,6 +215,8 @@ CREATE TABLE player_familiars
   FOREIGN KEY (player_id) REFERENCES players(id),
   FOREIGN KEY (familiar_id) REFERENCES familiars(id)
 );
+
+COMMIT;
 
 -- brigade_formations
 -- evolution (rarity + stars)
