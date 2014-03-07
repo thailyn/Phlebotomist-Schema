@@ -12,7 +12,7 @@ CREATE TABLE races
 );
 
 INSERT INTO races (name, description)
-  VALUES ('Paragon', 'The world is filled with angels, and the paragons who do their bidding.')
+  VALUES ('Paragon', 'The world is filled with angels, and the paragons who do their bidding.');
 --.....
 
 CREATE TABLE rarities
