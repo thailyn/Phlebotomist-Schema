@@ -1,6 +1,7 @@
 -- -*- mode:sql product:SQLite -*-
 -- (C-u C-c TAB)
 
+PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
 CREATE TABLE races
