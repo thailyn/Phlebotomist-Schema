@@ -50,8 +50,8 @@ CREATE TABLE familiars
   tradable SMALLINT NOT NULL, -- bit
   last_words TEXT NOT NULL,
 
-  prev_evolution INTEGER NULL,
-  next_evolution INTEGER NULL,
+  prev_evolution_id INTEGER NULL,
+  next_evolution_id INTEGER NULL,
 
   UNIQUE (name) ON CONFLICT REPLACE,
   FOREIGN KEY (rarity_id) REFERENCES rarities(id),
