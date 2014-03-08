@@ -54,11 +54,11 @@ CREATE TABLE familiars
   next_evolution_id INTEGER NULL,
 
   UNIQUE (name) ON CONFLICT REPLACE,
-  FOREIGN KEY (rarity_id) REFERENCES rarities(id),
-  FOREIGN KEY (growth_id) REFERENCES growths(id),
-  FOREIGN KEY (race_id) REFERENCES races(id),
-  FOREIGN KEY (prev_evolution) REFERENCES familiars(id),
-  FOREIGN KEY (next_evolution) REFERENCES familiars(id)
+  CONSTRAINT FK__familiars__rarity FOREIGN KEY (rarity_id) REFERENCES rarities(id),
+  CONSTRAINT FK__familiars__growth FOREIGN KEY (growth_id) REFERENCES growths(id),
+  CONSTRAINT FK__familiars__race FOREIGN KEY (race_id) REFERENCES races(id),
+  CONSTRAINT FK__familiars__prev_evolution FOREIGN KEY (prev_evolution_id) REFERENCES familiars(id),
+  CONSTRAINT FK__familiars__next_evolution FOREIGN KEY (next_evolution_id) REFERENCES familiars(id)
 );
 
 CREATE TABLE stats
