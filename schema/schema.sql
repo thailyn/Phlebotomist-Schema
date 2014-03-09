@@ -232,6 +232,28 @@ CREATE TABLE familiar_skills
   FOREIGN KEY (skill_id) REFERENCES skills(id)
 );
 
+CREATE TABLE item_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+CREATE TABLE items
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  item_type_id INTEGER NOT NULL,
+  player_id INTEGER NULL,
+  quantity_tradable SMALLINT NOT NULL DEFAULT 0,
+  quantity_bloodbound SMALLINT NOT NULL DEFAULT 0,
+
+  UNIQUE (item_type_id, player_id),
+  FOREIGN KEY (item_type_id) REFERENCES item_types(id),
+  FOREIGN KEY (player_id) REFERENCES players(id)
+);
+
 COMMIT;
 
 -- brigade_formations
@@ -240,5 +262,4 @@ COMMIT;
   -- player, brigade_formation, name, id
 -- brigade_familiars
   -- brigade, familiar_instance, location (l<->r), is_reserve
--- items
 -- bazaar offers
