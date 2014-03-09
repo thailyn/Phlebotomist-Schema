@@ -10,7 +10,7 @@ CREATE TABLE races
   name NVARCHAR(100) NOT NULL,
   description NVARCHAR(1000) NOT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 INSERT INTO races (name, description)
@@ -24,7 +24,7 @@ CREATE TABLE rarities
   rank SMALLINT NOT NULL, -- e.g., common = 1, uncommon = 2, hero = some high value
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE growths
@@ -33,7 +33,7 @@ CREATE TABLE growths
   name NVARCHAR(100) NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE familiar_types
@@ -53,7 +53,7 @@ CREATE TABLE familiar_types
   prev_evolution_id INTEGER NULL,
   next_evolution_id INTEGER NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE,
+  UNIQUE (name) ON CONFLICT ABORT,
   CONSTRAINT FK__familiar_types__rarity FOREIGN KEY (rarity_id) REFERENCES rarities(id),
   CONSTRAINT FK__familiar_types__growth FOREIGN KEY (growth_id) REFERENCES growths(id),
   CONSTRAINT FK__familiar_types__race FOREIGN KEY (race_id) REFERENCES races(id),
@@ -67,7 +67,7 @@ CREATE TABLE stats
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE skill_types
@@ -76,7 +76,7 @@ CREATE TABLE skill_types
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE skill_patterns
@@ -85,7 +85,7 @@ CREATE TABLE skill_patterns
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 -- http://bloodbrothersgame.wikia.com/wiki/Category:Skills
 -- Sweeping, AoE, Multi-Attack, Single-Attack, Fork-Attack, Varies
@@ -114,7 +114,7 @@ CREATE TABLE skills
   ability TEXT NULL, -- e.g., "Take Damage & Counter".  Needed?
   ignores_position TINYINT NULL, -- bit
 
-  UNIQUE (name) ON CONFLICT REPLACE,
+  UNIQUE (name) ON CONFLICT ABORT,
   FOREIGN KEY (skill_type_id) REFERENCES skill_types(id),
   FOREIGN KEY (modifier_stat_id) REFERENCES stats(id),
   FOREIGN KEY (skill_pattern_id) REFERENCES skill_patterns(id),
@@ -134,7 +134,7 @@ CREATE TABLE skill_affected_stats
   -- by a single skill, this table will have to keep track
   -- of those different amounts here.
 
-  UNIQUE (skill_id, stat_id) ON CONFLICT REPLACE,
+  UNIQUE (skill_id, stat_id) ON CONFLICT ABORT,
   FOREIGN KEY (skill_id) REFERENCES skills(id),
   FOREIGN KEY (stat_id) REFERENCES stats(id)
 );
@@ -145,7 +145,7 @@ CREATE TABLE familiar_type_skills
   familiar_type_id INTEGER NOT NULL,
   skill_id INTEGER NOT NULL,
 
-  UNIQUE (familiar_type_id, skill_id) ON CONFLICT REPLACE,
+  UNIQUE (familiar_type_id, skill_id) ON CONFLICT ABORT,
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
   FOREIGN KEY (skill_id) REFERENCES skills(id)
 );
@@ -156,7 +156,7 @@ CREATE TABLE event_types
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE events
@@ -167,7 +167,7 @@ CREATE TABLE events
   date_started TEXT NULL,
   date_ended TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE,
+  UNIQUE (name) ON CONFLICT ABORT,
   FOREIGN KEY (event_type_id) REFERENCES event_types(id)
 );
 
@@ -178,7 +178,7 @@ CREATE TABLE event_elite_familiar_types
   familiar_type_id INTEGER NOT NULL,
   multiplier REAL NOT NULL,
 
-  UNIQUE (event_id, familiar_type_id) ON CONFLICT REPLACE,
+  UNIQUE (event_id, familiar_type_id) ON CONFLICT ABORT,
   FOREIGN KEY (event_id) REFERENCES events(id),
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
@@ -189,7 +189,7 @@ CREATE TABLE raid_boss_types
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE raid_boss_familiar_types
@@ -216,7 +216,7 @@ CREATE TABLE raid_bosses
   mvp_bonus_multiplier REAL NULL,
   jur_mvp_bonus_multiplier REAL NULL,
 
-  UNIQUE (raid_boss_familiar_type, level) ON CONFLICT REPLACE,
+  UNIQUE (raid_boss_familiar_type, level) ON CONFLICT ABORT,
   FOREIGN KEY (raid_boss_familiar_type) REFERENCES raid_boss_familiar_types
 );
 
@@ -227,7 +227,7 @@ CREATE TABLE attack_types
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE raid_boss_brigade_attacks
@@ -254,7 +254,7 @@ CREATE TABLE players
   created_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   -- last login?
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE familiars
@@ -302,7 +302,7 @@ CREATE TABLE item_types
   name TEXT NOT NULL,
   description TEXT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE items
@@ -333,7 +333,7 @@ CREATE TABLE bazaar_offer_item_terms
   item_id INT NOT NULL,
   quantity INT NOT NULL DEFAULT 1,
 
-  UNIQUE (bazaar_offer_id, item_id) ON CONFLICT REPLACE,
+  UNIQUE (bazaar_offer_id, item_id) ON CONFLICT ABORT,
   FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
   FOREIGN KEY (item_id) REFERENCES item_types(id)
 );
@@ -345,7 +345,7 @@ CREATE TABLE bazaar_offer_familiar_type_terms
   familiar_type_id INT NOT NULL,
   quantity INT NOT NULL DEFAULT 1,
 
-  UNIQUE (bazaar_offer_id, familiar_type_id) ON CONFLICT REPLACE,
+  UNIQUE (bazaar_offer_id, familiar_type_id) ON CONFLICT ABORT,
   FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
@@ -356,7 +356,7 @@ CREATE TABLE brigade_formations
   name TEXT NOT NULL,
   num_positions INT NOT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 -- the position's horizonal location; left, right, etc.
@@ -365,7 +365,7 @@ CREATE TABLE brigade_formation_horizontal_position_types
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 -- "front", "center", "rear"
@@ -374,7 +374,7 @@ CREATE TABLE brigade_formation_vertical_position_types
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
 
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (name) ON CONFLICT ABORT
 );
 
 CREATE TABLE brigade_formation_positions
@@ -384,7 +384,7 @@ CREATE TABLE brigade_formation_positions
   horizontal_position_type_id INTEGER NOT NULL,
   vertical_position_type_id INTEGER NOT NULL,
 
-  UNIQUE (brigade_formation_id, horizontal_position_type_id) ON CONFLICT REPLACE,
+  UNIQUE (brigade_formation_id, horizontal_position_type_id) ON CONFLICT ABORT,
   FOREIGN KEY (brigade_formation_id) REFERENCES brigade_formations(id),
   FOREIGN KEY (horizontal_position_type_id) REFERENCES brigade_formation_horizontal_position_types(id),
   FOREIGN KEY (vertical_position_type_id) REFERENCES brigade_formation_vertical_position_types(id)
@@ -398,7 +398,7 @@ CREATE TABLE brigades
   name TEXT NULL,
   notes TEXT NULL,
 
-  UNIQUE (player_id, name) ON CONFLICT REPLACE,
+  UNIQUE (player_id, name) ON CONFLICT ABORT,
   FOREIGN KEY (brigade_formation_id) REFERENCES brigade_formations(id),
   FOREIGN KEY (player_id) REFERENCES players(id)
 );
@@ -411,7 +411,7 @@ CREATE TABLE brigade_familiars
   brigade_formation_position_id INTEGER NOT NULL,
   is_reserve TINYINT NOT NULL, -- bit
 
-  UNIQUE (brigade_id, brigade_formation_position_id, is_reserve) ON CONFLICT REPLACE,
+  UNIQUE (brigade_id, brigade_formation_position_id, is_reserve) ON CONFLICT ABORT,
   FOREIGN KEY (brigade_id) REFERENCES brigades(id),
   FOREIGN KEY (familiar_id) REFERENCES familiars(id),
   FOREIGN KEY (brigade_formation_position_id) REFERENCES brigade_formation_positions(id)
