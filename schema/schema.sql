@@ -220,6 +220,33 @@ CREATE TABLE raid_bosses
   FOREIGN KEY (raid_boss_familiar_type) REFERENCES raid_boss_familiar_types
 );
 
+-- "standard", "all-out"
+CREATE TABLE attack_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+CREATE TABLE raid_boss_brigade_attacks
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  raid_boss_id INTEGER NOT NULL,
+  brigade_id INTEGER NULL,
+
+  date TEXT NULL,
+  attack_type_id INTEGER NOT NULL,
+  starting_HP REAL NULL,
+  ending_HP REAL NULL,
+  damage REAL NULL,
+
+  FOREIGN KEY (raid_boss_id) REFERENCES raid_bosses(id),
+  FOREIGN KEY (brigade_id) REFERENCES brigades(id),
+  FOREIGN KEY (attack_type_id) REFERENCES attack_types(id)
+);
+
 CREATE TABLE players
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
