@@ -144,7 +144,6 @@ CREATE TABLE familiar_type_skills
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   familiar_type_id INTEGER NOT NULL,
   skill_id INTEGER NOT NULL,
-  rank TINYINT NOT NULL, -- probably not needed
 
   UNIQUE (familiar_type_id, skill_id) ON CONFLICT REPLACE,
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
