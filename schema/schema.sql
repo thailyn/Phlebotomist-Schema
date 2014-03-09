@@ -220,6 +220,18 @@ CREATE TABLE familiars
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
+CREATE TABLE familiar_skills
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  familiar_id INTEGER NOT NULL,
+  skill_id INTEGER NOT NULL,
+  level SMALLINT NOT NULL,
+  exp SMALLINT NOT NULL,
+
+  FOREIGN KEY (familiar_id) REFERENCES familiars(id),
+  FOREIGN KEY (skill_id) REFERENCES skills(id)
+);
+
 COMMIT;
 
 -- brigade_formations
