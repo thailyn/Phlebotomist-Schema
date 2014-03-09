@@ -36,7 +36,7 @@ CREATE TABLE growths
   UNIQUE (name) ON CONFLICT REPLACE
 );
 
-CREATE TABLE familiars
+CREATE TABLE familiar_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   bb_id INTEGER NULL, -- Blood Brother's ID value
@@ -54,11 +54,11 @@ CREATE TABLE familiars
   next_evolution_id INTEGER NULL,
 
   UNIQUE (name) ON CONFLICT REPLACE,
-  CONSTRAINT FK__familiars__rarity FOREIGN KEY (rarity_id) REFERENCES rarities(id),
-  CONSTRAINT FK__familiars__growth FOREIGN KEY (growth_id) REFERENCES growths(id),
-  CONSTRAINT FK__familiars__race FOREIGN KEY (race_id) REFERENCES races(id),
-  CONSTRAINT FK__familiars__prev_evolution FOREIGN KEY (prev_evolution_id) REFERENCES familiars(id),
-  CONSTRAINT FK__familiars__next_evolution FOREIGN KEY (next_evolution_id) REFERENCES familiars(id)
+  CONSTRAINT FK__familiar_types__rarity FOREIGN KEY (rarity_id) REFERENCES rarities(id),
+  CONSTRAINT FK__familiar_types__growth FOREIGN KEY (growth_id) REFERENCES growths(id),
+  CONSTRAINT FK__familiar_types__race FOREIGN KEY (race_id) REFERENCES races(id),
+  CONSTRAINT FK__familiar_types__prev_evolution FOREIGN KEY (prev_evolution_id) REFERENCES familiar_types(id),
+  CONSTRAINT FK__familiar_types__next_evolution FOREIGN KEY (next_evolution_id) REFERENCES familiar_types(id)
 );
 
 CREATE TABLE stats
@@ -138,15 +138,15 @@ CREATE TABLE skill_affected_stats
   FOREIGN KEY (stat_id) REFERENCES stats(id)
 );
 
-CREATE TABLE familiar_skills
+CREATE TABLE familiar_type_skills
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  familiar_id INTEGER NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
   skill_id INTEGER NOT NULL,
   rank TINYINT NOT NULL, -- probably not needed
 
-  UNIQUE (familiar_id, skill_id) ON CONFLICT REPLACE,
-  FOREIGN KEY (familiar_id) REFERENCES familiars(id),
+  UNIQUE (familiar_type_id, skill_id) ON CONFLICT REPLACE,
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
   FOREIGN KEY (skill_id) REFERENCES skills(id)
 );
 
@@ -171,16 +171,16 @@ CREATE TABLE events
   FOREIGN KEY (event_type_id) REFERENCES event_types(id)
 );
 
-CREATE TABLE event_elite_familiars
+CREATE TABLE event_elite_familiar_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   event_id INTEGER NOT NULL,
-  familiar_id INTEGER NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
   multiplier REAL NOT NULL,
 
-  UNIQUE (event_id, familiar_id) ON CONFLICT REPLACE,
+  UNIQUE (event_id, familiar_type_id) ON CONFLICT REPLACE,
   FOREIGN KEY (event_id) REFERENCES events(id),
-  FOREIGN KEY (familiar_id) REFERENCES familiars(id)
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
 CREATE TABLE players
@@ -193,11 +193,11 @@ CREATE TABLE players
   UNIQUE (name) ON CONFLICT REPLACE
 );
 
-CREATE TABLE player_familiars
+CREATE TABLE familiars
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   player_id INTEGER NULL,
-  familiar_id INTEGER NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
   owned TINYINT NOT NULL, -- bit
 
   level REAL NULL,
@@ -217,7 +217,7 @@ CREATE TABLE player_familiars
   roots_crystals INT NULL,
 
   FOREIGN KEY (player_id) REFERENCES players(id),
-  FOREIGN KEY (familiar_id) REFERENCES familiars(id)
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
 COMMIT;
