@@ -286,11 +286,59 @@ CREATE TABLE bazaar_offer_familiar_type_terms
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
+CREATE TABLE brigade_formation_position_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+CREATE TABLE brigade_formation_positions
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  brigade_formation_id INTEGER NOT NULL,
+  location INT NOT NULL, -- the position's horizonal location; 1 is left, 5 is right
+
+  UNIQUE (brigade_formation_id, location) ON CONFLICT REPLACE
+);
+
+CREATE TABLE brigade_formations
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  num_positions INT NOT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+CREATE TABLE brigades
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  brigade_formation_id INTEGER NOT NULL,
+  player_id INTEGER NULL,
+  name TEXT NULL,
+  notes TEXT NULL,
+
+  UNIQUE (player_id, name) ON CONFLICT REPLACE,
+  FOREIGN KEY (brigade_formation_id) REFERENCES brigade_formations(id),
+  FOREIGN KEY (player_id) REFERENCES players(id)
+);
+
+CREATE TABLE brigade_familiars
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  brigade_id INTEGER NOT NULL,
+  familiar_id INTEGER NOT NULL,
+  brigade_formation_position_id INTEGER NOT NULL,
+  is_reserve TINYINT NOT NULL, -- bit
+
+  UNIQUE (brigade_id, brigade_formation_position_id, is_reserve) ON CONFLICT REPLACE,
+  FOREIGN KEY (brigade_id) REFERENCES brigades(id),
+  FOREIGN KEY (familiar_id) REFERENCES familiars(id),
+  FOREIGN KEY (brigade_formation_position_id) REFERENCES brigade_formation_positions(id)
+);
+
 COMMIT;
 
--- brigade_formations
 -- evolution (rarity + stars)
--- brigades
-  -- player, brigade_formation, name, id
--- brigade_familiars
-  -- brigade, familiar_instance, location (l<->r), is_reserve
