@@ -286,7 +286,26 @@ CREATE TABLE bazaar_offer_familiar_type_terms
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
-CREATE TABLE brigade_formation_position_types
+CREATE TABLE brigade_formations
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  num_positions INT NOT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+-- the position's horizonal location; left, right, etc.
+CREATE TABLE brigade_formation_horizontal_position_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+-- "front", "center", "rear"
+CREATE TABLE brigade_formation_vertical_position_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
@@ -298,18 +317,13 @@ CREATE TABLE brigade_formation_positions
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   brigade_formation_id INTEGER NOT NULL,
-  location INT NOT NULL, -- the position's horizonal location; 1 is left, 5 is right
+  horizontal_position_type_id INTEGER NOT NULL,
+  vertical_position_type_id INTEGER NOT NULL,
 
-  UNIQUE (brigade_formation_id, location) ON CONFLICT REPLACE
-);
-
-CREATE TABLE brigade_formations
-(
-  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  name TEXT NOT NULL,
-  num_positions INT NOT NULL,
-
-  UNIQUE (name) ON CONFLICT REPLACE
+  UNIQUE (brigade_formation_id, horizontal_position_type_id) ON CONFLICT REPLACE,
+  FOREIGN KEY (brigade_formation_id) REFERENCES brigade_formations(id),
+  FOREIGN KEY (horizontal_position_type_id) REFERENCES brigade_formation_horizontal_position_types(id),
+  FOREIGN KEY (vertical_position_type_id) REFERENCES brigade_formation_vertical_position_types(id)
 );
 
 CREATE TABLE brigades
