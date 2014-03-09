@@ -183,6 +183,43 @@ CREATE TABLE event_elite_familiar_types
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
 );
 
+CREATE TABLE raid_boss_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NULL,
+
+  UNIQUE (name) ON CONFLICT REPLACE
+);
+
+CREATE TABLE raid_boss_familiar_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NULL,
+  familiar_type_id INTEGER NULL,
+  raid_boss_type_id INTEGER NOT NULL,
+  event_id INTEGER NOT NULL,
+
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
+  FOREIGN KEY (raid_boss_type_id) REFERENCES raid_boss_types(id),
+  FOREIGN KEY (event_id) REFERENCES events(id)
+);
+
+CREATE TABLE raid_bosses
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  raid_boss_familiar_type INTEGER NOT NULL,
+
+  level REAL NOT NULL,
+  HP REAL NULL,
+  attack_points REAL NULL,
+  mvp_bonus_multiplier REAL NULL,
+  jur_mvp_bonus_multiplier REAL NULL,
+
+  UNIQUE (raid_boss_familiar_type, level) ON CONFLICT REPLACE,
+  FOREIGN KEY (raid_boss_familiar_type) REFERENCES raid_boss_familiar_types
+);
+
 CREATE TABLE players
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
