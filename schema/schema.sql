@@ -198,6 +198,7 @@ CREATE TABLE player_familiars
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   player_id INTEGER NULL,
   familiar_id INTEGER NOT NULL,
+  owned TINYINT NOT NULL, -- bit
 
   level REAL NULL,
   hp REAL NULL,
