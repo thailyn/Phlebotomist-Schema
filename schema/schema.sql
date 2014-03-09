@@ -254,6 +254,38 @@ CREATE TABLE items
   FOREIGN KEY (player_id) REFERENCES players(id)
 );
 
+CREATE TABLE bazaar_offers
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  player_name TEXT NULL,
+  date TEXT NULL,
+  offered_familiar_id
+);
+
+CREATE TABLE bazaar_offer_item_terms
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  bazaar_offer_id INT NOT NULL,
+  item_id INT NOT NULL,
+  quantity INT NOT NULL DEFAULT 1,
+
+  UNIQUE (bazaar_offer_id, item_id) ON CONFLICT REPLACE,
+  FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
+  FOREIGN KEY (item_id) REFERENCES item_types(id)
+);
+
+CREATE TABLE bazaar_offer_familiar_type_terms
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  bazaar_offer_id INT NOT NULL,
+  familiar_type_id INT NOT NULL,
+  quantity INT NOT NULL DEFAULT 1,
+
+  UNIQUE (bazaar_offer_id, familiar_type_id) ON CONFLICT REPLACE,
+  FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
+);
+
 COMMIT;
 
 -- brigade_formations
@@ -262,4 +294,3 @@ COMMIT;
   -- player, brigade_formation, name, id
 -- brigade_familiars
   -- brigade, familiar_instance, location (l<->r), is_reserve
--- bazaar offers
