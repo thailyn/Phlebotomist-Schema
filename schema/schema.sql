@@ -96,7 +96,8 @@ CREATE TABLE skills
   name TEXT NOT NULL,
   description TEXT NOT NULL,
   skill_type_id INTEGER NOT NULL,
-  probability REAL NOT NULL,
+  min_probability REAL NOT NULL,
+  max_probability REAL NOT NULL,
   modifier REAL NULL,
   modifier_stat_id INTEGER NULL,
   flat_modifier TINYINT NULL, -- bit
