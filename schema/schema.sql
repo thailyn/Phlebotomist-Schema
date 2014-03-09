@@ -79,7 +79,7 @@ CREATE TABLE skill_types
   UNIQUE (name) ON CONFLICT REPLACE
 );
 
-CREATE TABLE skill_target_types
+CREATE TABLE skill_patterns
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE skills
   flat_modifier TINYINT NULL, -- bit
 
   num_targets SMALLINT NULL,
-  skill_target_type_id INTEGER NULL,
+  skill_pattern_id INTEGER NULL,
   rows_range INT NULL, -- bit-mask of which rows (front to back) can be affected
   columns_range INT NULL, -- bit-mask of which columns (left to right) can be affected
 
@@ -116,7 +116,7 @@ CREATE TABLE skills
   UNIQUE (name) ON CONFLICT REPLACE,
   FOREIGN KEY (skill_type_id) REFERENCES skill_types(id),
   FOREIGN KEY (modifier_stat_id) REFERENCES stats(id),
-  FOREIGN KEY (skill_target_type_id) REFERENCES skill_target_types(id),
+  FOREIGN KEY (skill_pattern_id) REFERENCES skill_patterns(id),
   FOREIGN KEY (foe_defensive_modifier_stat_id) REFERENCES stats(id)
 );
 
