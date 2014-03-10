@@ -39,7 +39,7 @@ CREATE TABLE growths
 CREATE TABLE familiar_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  bb_id INTEGER NULL, -- Blood Brother's ID value
+  bb_id INTEGER NULL, -- Blood Brother ID value
   name TEXT NOT NULL,
   rarity_id INTEGER NOT NULL,
   num_stars SMALLINT NOT NULL,
