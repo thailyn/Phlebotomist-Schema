@@ -272,13 +272,13 @@ CREATE TABLE familiars
   agi REAL NULL,
   exp REAL NULL,
 
-  hp_crystals INT NOT NULL DEFAULT 0,
-  atk_crystals INT NOT NULL DEFAULT 0,
-  def_crystals INT NOT NULL DEFAULT 0,
-  wis_crystals INT NOT NULL DEFAULT 0,
-  agi_crystals INT NOT NULL DEFAULT 0,
+  hp_crystals INTEGER NOT NULL DEFAULT 0,
+  atk_crystals INTEGER NOT NULL DEFAULT 0,
+  def_crystals INTEGER NOT NULL DEFAULT 0,
+  wis_crystals INTEGER NOT NULL DEFAULT 0,
+  agi_crystals INTEGER NOT NULL DEFAULT 0,
 
-  roots_crystals INT NULL,
+  roots_crystals INTEGER NULL,
 
   FOREIGN KEY (player_id) REFERENCES players(id),
   FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
@@ -329,9 +329,9 @@ CREATE TABLE bazaar_offers
 CREATE TABLE bazaar_offer_item_terms
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  bazaar_offer_id INT NOT NULL,
-  item_id INT NOT NULL,
-  quantity INT NOT NULL DEFAULT 1,
+  bazaar_offer_id INTEGER NOT NULL,
+  item_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL DEFAULT 1,
 
   UNIQUE (bazaar_offer_id, item_id) ON CONFLICT ABORT,
   FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
@@ -341,9 +341,9 @@ CREATE TABLE bazaar_offer_item_terms
 CREATE TABLE bazaar_offer_familiar_type_terms
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  bazaar_offer_id INT NOT NULL,
-  familiar_type_id INT NOT NULL,
-  quantity INT NOT NULL DEFAULT 1,
+  bazaar_offer_id INTEGER NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
+  quantity INTEGER NOT NULL DEFAULT 1,
 
   UNIQUE (bazaar_offer_id, familiar_type_id) ON CONFLICT ABORT,
   FOREIGN KEY (bazaar_offer_id) REFERENCES bazaar_offers(id),
@@ -354,7 +354,7 @@ CREATE TABLE brigade_formations
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
-  num_positions INT NOT NULL,
+  num_positions INTEGER NOT NULL,
 
   UNIQUE (name) ON CONFLICT ABORT
 );
