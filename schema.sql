@@ -323,7 +323,9 @@ CREATE TABLE bazaar_offers
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   player_name TEXT NULL,
   date TEXT NULL,
-  offered_familiar_id
+  offered_familiar_id INTEGER NOT NULL,
+
+  FOREIGN KEY (offered_familiar_id) REFERENCES familiars(id)
 );
 
 CREATE TABLE bazaar_offer_item_terms
