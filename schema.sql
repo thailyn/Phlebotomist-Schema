@@ -264,6 +264,9 @@ CREATE TABLE familiars
   familiar_type_id INTEGER NOT NULL,
   owned TINYINT NOT NULL, -- bit
 
+  spawn_parent_id INTEGER NULL,
+  seed_parent_id INTEGER NULL,
+
   level REAL NULL,
   hp REAL NULL,
   atk REAL NULL,
@@ -281,7 +284,9 @@ CREATE TABLE familiars
   roots_crystals INTEGER NULL,
 
   FOREIGN KEY (player_id) REFERENCES players(id),
-  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id)
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
+  FOREIGN KEY (spawn_parent_id) REFERENCES familiars(id),
+  FOREIGN KEY (seed_parent_id) REFERENCES familiars(id)
 );
 
 CREATE TABLE familiar_skills
