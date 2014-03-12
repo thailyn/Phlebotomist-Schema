@@ -377,6 +377,8 @@ CREATE TABLE brigade_formation_vertical_position_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name TEXT NOT NULL,
+  damage_dealt_modifier REAL NOT NULL,
+  damage_taken_modifier REAL NOT NULL,
 
   UNIQUE (name) ON CONFLICT ABORT
 );
