@@ -18,6 +18,7 @@ CREATE TABLE rarities
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   name NVARCHAR(100) NOT NULL,
   rank SMALLINT NOT NULL, -- e.g., common = 1, uncommon = 2, hero = some high value
+  max_level REAL NOT NULL,
   description TEXT NULL,
 
   UNIQUE (name) ON CONFLICT ABORT
