@@ -13,10 +13,6 @@ CREATE TABLE races
   UNIQUE (name) ON CONFLICT ABORT
 );
 
-INSERT INTO races (name, description)
-  VALUES ('Paragon', 'The world is filled with angels, and the paragons who do their bidding.');
---.....
-
 CREATE TABLE rarities
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
