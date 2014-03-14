@@ -67,6 +67,28 @@ CREATE TABLE stats
   UNIQUE (name) ON CONFLICT ABORT
 );
 
+CREATE TABLE stat_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+
+  UNIQUE (name) ON CONFLICT ABORT
+);
+
+CREATE TABLE familiar_type_stat_values
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
+  stat_type_id INTEGER NOT NULL,
+  stat_id INTEGER NOT NULL,
+  stat_value REAL NOT NULL,
+
+  UNIQUE (familiar_type_id, stat_type_id, stat_id) ON CONFLICT ABORT,
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
+  FOREIGN KEY (stat_type_id) REFERENCES stat_types(id),
+  FOREIGN KEY (stat_id) REFERENCES stats(id)
+);
+
 CREATE TABLE skill_types
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

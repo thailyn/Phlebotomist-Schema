@@ -64,6 +64,15 @@ INSERT INTO stats (name)
 INSERT INTO stats (name)
   VALUES ('XP');
 
+INSERT INTO stat_types (name)
+  VALUES ('Base');
+INSERT INTO stat_types (name)
+  VALUES ('Max');
+INSERT INTO stat_types (name)
+  VALUES ('PE');
+INSERT INTO stat_types (name)
+  VALUES ('Current');
+
 -- Skill types
 INSERT INTO skill_types (name)
   VALUES ('Attack');
@@ -133,11 +142,11 @@ INSERT INTO brigade_formation_horizontal_position_types (name)
   VALUES ('Far Right');
 
 -- Brigade Formation Vertical Position Types
-INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier)
+INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier, damage_taken_modifier)
   VALUES ('Front', 1.20, 1.20);
-INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier)
+INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier, damage_taken_modifier)
   VALUES ('Center', 1.00, 1.00);
-INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier)
+INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifier, damage_taken_modifier)
   VALUES ('Rear', 0.80, 0.80);
 
 -- Brigade Formation Positions
