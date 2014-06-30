@@ -445,6 +445,20 @@ CREATE TABLE brigade_familiars
   FOREIGN KEY (brigade_formation_position_id) REFERENCES brigade_formation_positions(id)
 );
 
+CREATE TABLE brigade_familiar_types
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  brigade_id INTEGER NOT NULL,
+  familiar_type_id INTEGER NOT NULL,
+  brigade_formation_position_id INTEGER NOT NULL,
+  is_reserve TINYINT NOT NULL, -- bit
+
+  UNIQUE (brigade_id, brigade_formation_position_id, is_reserve) ON CONFLICT ABORT,
+  FOREIGN KEY (brigade_id) REFERENCES brigades(id),
+  FOREIGN KEY (familiar_type_id) REFERENCES familiar_types(id),
+  FOREIGN KEY (brigade_formation_position_id) REFERENCES brigade_formation_positions(id)
+);
+
 COMMIT;
 
 -- evolution (rarity + stars)
