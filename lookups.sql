@@ -121,13 +121,47 @@ INSERT INTO attack_types (name)
 
 -- Brigade Types
 INSERT INTO brigade_formations (name, num_positions)
-  VALUES ('3-Skein', 3);
+  VALUES ('3-Skein', 3); -- 1
 INSERT INTO brigade_formations (name, num_positions)
-  VALUES ('3-Valley', 3);
+  VALUES ('3-Valley', 3); -- 2
 INSERT INTO brigade_formations (name, num_positions)
-  VALUES ('3-Tooth', 3);
+  VALUES ('3-Tooth', 3); -- 3
 INSERT INTO brigade_formations (name, num_positions)
-  VALUES ('3-Wave', 3);
+  VALUES ('3-Wave', 3); -- 4
+
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Skein', 4); -- 5
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Valley', 4); -- 6
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Wave', 4); -- 7
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Front', 4); -- 8
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Mid', 4); -- 9
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('4-Rear', 4); -- 10
+
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Skein', 5); -- 11
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Valley', 5); -- 12
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Tooth', 5); -- 13
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Wave', 5); -- 14
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Front', 5); -- 15
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Mid', 5); -- 16
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Rear', 5); -- 17
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Pike', 5); -- 18
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Shield', 5); -- 19
+INSERT INTO brigade_formations (name, num_positions)
+  VALUES ('5-Pincer', 5); -- 20
 
 -- Brigade Formation Horizontal Position Types
 INSERT INTO brigade_formation_horizontal_position_types (name)
@@ -150,4 +184,195 @@ INSERT INTO brigade_formation_vertical_position_types (name, damage_dealt_modifi
   VALUES ('Rear', 0.80, 0.80);
 
 -- Brigade Formation Positions
--- TODO
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (1, 2, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (1, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (1, 4, 2);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (2, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (2, 3, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (2, 4, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (3, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (3, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (3, 4, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (4, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (4, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (4, 4, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (5, 1, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (5, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (5, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (5, 4, 2);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (6, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (6, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (6, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (6, 4, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (7, 1, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (7, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (7, 3, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (7, 4, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (8, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (8, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (8, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (8, 4, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (9, 1, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (9, 2, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (9, 3, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (9, 4, 2);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (10, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (10, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (10, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (10, 4, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (11, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (11, 2, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (11, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (11, 4, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (11, 5, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (12, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (12, 2, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (12, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (12, 4, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (12, 5, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (13, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (13, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (13, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (13, 4, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (13, 5, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (14, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (14, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (14, 3, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (14, 4, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (14, 5, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (15, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (15, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (15, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (15, 4, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (15, 5, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (16, 1, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (16, 2, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (16, 3, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (16, 4, 2);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (16, 5, 2);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (17, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (17, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (17, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (17, 4, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (17, 5, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (18, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (18, 2, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (18, 3, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (18, 4, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (18, 5, 3);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (19, 1, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (19, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (19, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (19, 4, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (19, 5, 1);
+
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (20, 1, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (20, 2, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (20, 3, 3);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (20, 4, 1);
+INSERT INTO brigade_formation_positions (brigade_formation_id, horizontal_position_type_id, vertical_position_type_id)
+  VALUES (20, 5, 3);
+
