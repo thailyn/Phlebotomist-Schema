@@ -470,6 +470,15 @@ CREATE TABLE brigade_familiar_types
   FOREIGN KEY (brigade_formation_position_id) REFERENCES brigade_formation_positions(id)
 );
 
+CREATE TABLE data_version
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  version INTEGER NOT NULL
+);
+
+INSERT INTO data_version (version)
+  VALUES (1);
+
 COMMIT;
 
 -- evolution (rarity + stars)
