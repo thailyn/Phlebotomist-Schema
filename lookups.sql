@@ -81,6 +81,14 @@ INSERT INTO skill_types (name)
 INSERT INTO skill_types (name)
   VALUES ('Defensive');
 
+-- Skill groups
+INSERT INTO skill_groups (name)
+  VALUES ('Offensive');
+INSERT INTO skill_groups (name)
+  VALUES ('Healing');
+INSERT INTO skill_groups (name)
+  VALUES ('Debuff');
+
 -- Skill patterns
 INSERT INTO skill_patterns (name)
   VALUES ('Sweeping');

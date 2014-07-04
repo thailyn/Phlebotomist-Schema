@@ -98,6 +98,15 @@ CREATE TABLE skill_types
   UNIQUE (name) ON CONFLICT ABORT
 );
 
+CREATE TABLE skill_groups
+(
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NULL,
+
+  UNIQUE (name) ON CONFLICT ABORT
+);
+
 CREATE TABLE skill_patterns
 (
   id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -115,6 +124,7 @@ CREATE TABLE skills
   name TEXT NOT NULL,
   description TEXT NOT NULL,
   skill_type_id INTEGER NOT NULL,
+  skill_group_id INTEGER NOT NULL,
   min_probability REAL NOT NULL,
   max_probability REAL NOT NULL,
   modifier REAL NULL,
@@ -135,6 +145,7 @@ CREATE TABLE skills
 
   UNIQUE (name) ON CONFLICT ABORT,
   FOREIGN KEY (skill_type_id) REFERENCES skill_types(id),
+  FOREIGN KEY (skill_group_id) REFERENCES skill_groups(id),
   FOREIGN KEY (modifier_stat_id) REFERENCES stats(id),
   FOREIGN KEY (skill_pattern_id) REFERENCES skill_patterns(id),
   FOREIGN KEY (foe_defensive_modifier_stat_id) REFERENCES stats(id)
