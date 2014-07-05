@@ -88,6 +88,10 @@ INSERT INTO skill_groups (name)
   VALUES ('Healing');
 INSERT INTO skill_groups (name)
   VALUES ('Debuff');
+INSERT INTO skill_groups (name)
+  VALUES ('Flat');
+INSERT INTO skill_groups (name)
+  VALUES ('Buff');
 
 -- Skill patterns
 INSERT INTO skill_patterns (name)
