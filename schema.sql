@@ -46,6 +46,8 @@ CREATE TABLE familiar_types
   race_id INTEGER NOT NULL,
   tradable SMALLINT NOT NULL, -- bit
   last_words TEXT NOT NULL,
+  num_owned INTEGER NOT NULL DEFAULT 0,
+  num_wanted INTEGER NOT NULL DEFAULT 0,
 
   prev_evolution_id INTEGER NULL,
   next_evolution_id INTEGER NULL,
